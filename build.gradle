@@ -37,12 +37,17 @@ publishing {
     }
     repositories {
         maven {
-            credentials {
-                username = "$repoHapilyUsername"
-                password = "$repoHapilyPassword"
-            }
-
             url = "https://maven.hapily.me/releases"
+
+            def repoUsername = findProperty("repoHapilyUsername")
+            def repoPassword = findProperty("repoHapilyPassword")
+
+            if (repoUsername != null && repoPassword != null) {
+                credentials {
+                    username = repoUsername
+                    password = repoPassword
+                }
+            }
         }
     }
 }
