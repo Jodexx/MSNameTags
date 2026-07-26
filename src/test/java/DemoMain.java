@@ -1,8 +1,8 @@
 import com.github.echolightmc.msnametags.NameTag;
 import com.github.echolightmc.msnametags.NameTagManager;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.color.TeamColor;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
@@ -44,7 +44,7 @@ void main() {
     TeamManager teamManager = MinecraftServer.getTeamManager();
     Team nameTagTeam = new TeamBuilder("name-tags", teamManager)
         .collisionRule(TeamsPacket.CollisionRule.NEVER)
-        .teamColor(NamedTextColor.DARK_RED)
+        .teamColor(TeamColor.DARK_RED)
         .build();
     NameTagManager nameTagManager = new NameTagManager(globalEventHandler, entity -> nameTagTeam);
     globalEventHandler.addListener(PlayerSpawnEvent.class, event -> {
