@@ -11,9 +11,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly "net.minestom:minestom:2026.03.25-1.21.11"
-    testImplementation "net.minestom:minestom:2026.03.25-1.21.11"
-    testImplementation "net.kyori:adventure-text-minimessage:4.26.1"
+    compileOnly "net.minestom:minestom:2026.07.22-26.2"
+    testImplementation "net.minestom:testing:2026.07.22-26.2"
+    testImplementation "net.kyori:adventure-text-minimessage:5.2.0"
 }
 
 java {
@@ -37,12 +37,17 @@ publishing {
     }
     repositories {
         maven {
-            credentials {
-                username = "$repoHapilyUsername"
-                password = "$repoHapilyPassword"
-            }
-
             url = "https://maven.hapily.me/releases"
+
+            def repoUsername = findProperty("repoHapilyUsername")
+            def repoPassword = findProperty("repoHapilyPassword")
+
+            if (repoUsername != null && repoPassword != null) {
+                credentials {
+                    username = repoUsername
+                    password = repoPassword
+                }
+            }
         }
     }
 }
